@@ -1,4 +1,4 @@
 """
-Irj programot, mely beker ket szamot, es kiirja az osszeguket.
+Irj programot, mely beker ket egesz szamot, es kiirja az osszeguket.
 """
 

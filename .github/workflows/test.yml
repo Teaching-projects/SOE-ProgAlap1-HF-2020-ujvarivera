@@ -1,0 +1,16 @@
+name: Test solution
+on: push
+
+jobs:
+  input-output-test:
+    strategy:
+      matrix:
+        exercise: ["000"]
+        # Todo: make this dynamic with https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: scripts/test_solution.sh ${{ matrix.exercise }}
+
+
