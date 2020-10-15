@@ -5,6 +5,6 @@ x = int(input("Kérem az első számot! "))
 y = int(input("Kérem a második számot! "))
 
 if x > y:
-    print("A nagyobbik szám: ",x)
+    print(x)
 else:
-    print("A nagyobbik szám: ",y)
+    print(y)
