@@ -16,10 +16,11 @@ if [ -z "$(git status --porcelain)" ]; then
         cowsay "Deploying new exercises to $branchname"
         git branch -d $branchname
         git checkout -b $branchname $remote/main
+        git pull
         git merge origin/main
         git push $remote HEAD:main
         git checkout main
-        git branch -d $TMP
+        git branch -d $branchname
     done
 else
     echo "Commit changes first"
