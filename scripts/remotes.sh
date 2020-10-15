@@ -7,4 +7,5 @@ remotes=(
     "barnabasivan"
     "ujvarivera"
     "Teo2002"
+    "krisztikelemen"
 )

@@ -1,3 +1,18 @@
+function deploy {
+    student=$1
+    TMP="temporary_branch_for_remote_"
+    branchname="$TMP$remote"
+    cowsay "Deploying new exercises to $student"
+    git branch -d $branchname
+    git checkout -b $branchname $student/main
+    git pull --no-edit
+    git merge --no-edit origin/main
+    git push $student HEAD:main
+    git checkout main
+    git branch -d $branchname
+}
+
+
 if [ -z "$(git status --porcelain)" ]; then 
     BRANCH=$(git rev-parse --abbrev-ref HEAD)
     if [[ "$BRANCH" != "main" ]]; then
@@ -9,19 +24,13 @@ if [ -z "$(git status --porcelain)" ]; then
     git push origin
 
     source `dirname $0`/remotes.sh
-    TMP="temporary_branch_for_remote_"
-    
-    for remote in ${remotes[@]}; do
-        branchname="$TMP$remote"
-        cowsay "Deploying new exercises to $remote"
-        git branch -d $branchname
-        git checkout -b $branchname $remote/main
-        git pull --no-edit
-        git merge --no-edit origin/main
-        git push $remote HEAD:main
-        git checkout main
-        git branch -d $branchname
-    done
+    if [ -z "$1" ]; then
+        for remote in ${remotes[@]}; do
+            deploy $remote
+        done
+    else
+        deploy $1
+    fi
 else
     echo "Commit changes first"
     exit 2
