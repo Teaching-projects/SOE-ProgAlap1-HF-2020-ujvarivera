@@ -9,16 +9,18 @@ if [ -z "$(git status --porcelain)" ]; then
     git push origin
 
     source `dirname $0`/remotes.sh
-    TMP="temporary_branch_to_deploy_to_remotes"
+    TMP="temporary_branch_for_remote_"
     
     for remote in ${remotes[@]}; do
-        cowsay "Deploying new exercises to $remote"
-        git branch -d $TMP
-        git checkout -b $TMP $remote/main
-        git merge origin/main && git push $remote HEAD:main
+        branchname="$TMP$remote"
+        cowsay "Deploying new exercises to $branchname"
+        git branch -d $branchname
+        git checkout -b $branchname $remote/main
+        git merge origin/main
+        git push $remote HEAD:main
         git checkout main
+        git branch -d $TMP
     done
-    git branch -d $TMP
 else
     echo "Commit changes first"
     exit 2
