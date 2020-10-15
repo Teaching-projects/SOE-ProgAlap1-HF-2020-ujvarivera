@@ -7,7 +7,7 @@ for remote in ${remotes[@]}; do
     git branch -d $TMP
     git checkout -b $TMP $remote/main
     git merge origin/main && git push $remote HEAD:main
-    git checkout origin/main
+    git checkout main
 done
 
 
