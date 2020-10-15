@@ -13,11 +13,11 @@ if [ -z "$(git status --porcelain)" ]; then
     
     for remote in ${remotes[@]}; do
         branchname="$TMP$remote"
-        cowsay "Deploying new exercises to $branchname"
+        cowsay "Deploying new exercises to $remote"
         git branch -d $branchname
         git checkout -b $branchname $remote/main
-        git pull
-        git merge origin/main
+        git pull --no-edit
+        git merge --no-edit origin/main
         git push $remote HEAD:main
         git checkout main
         git branch -d $branchname
