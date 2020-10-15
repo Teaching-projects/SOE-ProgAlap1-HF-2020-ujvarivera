@@ -5,7 +5,7 @@ jobs:
   input-output-test:
     strategy:
       matrix:
-        exercise: ["000","001"]
+        exercise: ["000","001","002"]
         # Todo: make this dynamic with https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
     name: Test
     runs-on: ubuntu-latest
