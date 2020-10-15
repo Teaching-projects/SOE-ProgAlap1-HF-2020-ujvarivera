@@ -18,6 +18,7 @@ if [ -z "$(git status --porcelain)" ]; then
         git merge origin/main && git push $remote HEAD:main
         git checkout main
     done
+    git branch -d $TMP
 else
     echo "Commit changes first"
     exit 2
