@@ -2,15 +2,27 @@ name: Test solution
 on: push
 
 jobs:
+  check-existing-exercises:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          EXERCISES=""
+          for i in `ls -d [0-9][0-9][0-9]`; do 
+            EXERCISES="\"$i\", $EXERCISES"
+          done
+          echo $EXERCISES
+          echo "exercises=$EXERCISES" >> $GITHUB_ENV
+      - id: set-matrix
+        run: echo "::set-output name=matrix::{\"exercise\":[$exercises]}"
   input-output-test:
+    needs: check-existing-exercises
     strategy:
-      matrix:
-        exercise: ["000","001","002"]
-        # Todo: make this dynamic with https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/
+      matrix: ${{fromJson(needs.check-existing-exercises.outputs.matrix)}}
     name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: scripts/test_solution.sh ${{ matrix.exercise }}
-
-
+      - run: .github/scripts/test_solution.sh ${{ matrix.exercise }}
