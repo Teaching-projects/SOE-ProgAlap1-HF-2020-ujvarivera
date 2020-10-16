@@ -27,14 +27,14 @@ Pelda kimenet:
 """
 
 szam = int(input())
-index = 0
+x = 0
 lista=[]
 
-while index != szam:
+while x != szam:
     szam2 = int(input())
     if szam2 < 0:
-        index -=1
-    if szam2 >= 0:
+        continue
+    else:
         lista.append(szam2)
-    index +=1
+    x += 1
 print(lista)
