@@ -34,7 +34,7 @@ while index != szam:
     szam2 = int(input())
     if szam2 < 0:
         index -=1
-    if szam2 > 0:
+    if szam2 >= 0:
         lista.append(szam2)
     index +=1
 print(lista)
