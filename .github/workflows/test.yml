@@ -25,4 +25,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: scripts/test_solution.sh ${{ matrix.exercise }}
+      - run: .github/scripts/test_solution.sh ${{ matrix.exercise }}
