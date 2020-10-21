@@ -1,5 +1,6 @@
 """
-Kerj be egy egesz szamot (feltetelezheto, hoy pozitiv), es ird, ki, hogy 7-es szamrendszerben felirva mennyi a szamjegyeinek az osszege (decimalis formaban)
+Kerj be egy egesz szamot (feltetelezheto, hoy pozitiv), es ird, ki, 
+hogy 7-es szamrendszerben felirva mennyi a szamjegyeinek az osszege (decimalis formaban)
  
 Pl.: 
  1   (1)  -->  1
@@ -18,4 +19,16 @@ Pl.:
 48  (66)  -->  12
 49 (100)  -->  1
 """
+
+szam = int(input())
+maradek = 0
+osszeg = 0
+
+while szam > 0:
+    maradek = szam % 7
+    # print(maradek)
+    osszeg += maradek
+    szam = szam//7
+print(osszeg)
+
 
