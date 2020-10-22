@@ -26,3 +26,15 @@ Kimenet:
 5
 6
 """
+
+szam = int(input())
+lista =[]
+
+while szam !=0:
+    if szam not in lista:
+        lista.append(szam)
+    szam=int(input())
+# print(lista)
+
+for i in range(len(lista)):
+    print(lista[i])
