@@ -6,13 +6,13 @@ megtakaritas = 1.05 # ha pozitiv
 osszeg = 0
 
 penzmozgas = int(input()) 
-egyenleg += penzmozgas  #januarban nincs semmi levonas
+egyenleg += penzmozgas  #januarban nincs szamldij
 osszeg += penzmozgas
 
 if egyenleg > 0:
-  egyenleg *= 1.05
+  egyenleg *= megtakaritas
 else:
-  egyenleg *= 1.1
+  egyenleg *= kamat
 egyenleg = int(egyenleg)
 
 i = 0
@@ -23,9 +23,9 @@ while i < 11:
     egyenleg -= szamldij
     egyenleg +=penzmozgas
     if egyenleg > 0:
-        egyenleg *= 1.05  
+        egyenleg *= megtakaritas  
     else:
-        egyenleg *= 1.1
+        egyenleg *= kamat
     egyenleg = int(egyenleg)
     i += 1
 
