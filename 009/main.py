@@ -26,8 +26,18 @@ Feltetelezhetjuk, hogy legalabb egy nem 0 szamot fogunk kapni.
 
 """
 
+szam = 1
+lista = []
+lista2 = []
 
+while szam!=0:
+    szam = int(input())
+    if szam not in lista and szam != 0:
+        lista2.append(szam) #lista2-ben minden egyszer szerepel
+    if szam != 0:
+        lista.append(szam)
 
+max = lista2[-1]
 
-print(str(     )+": "+str(   ))
-
+for i in range(1,max+1):
+    print(str(i)+": "+str(lista.count(i)))
