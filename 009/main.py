@@ -37,7 +37,10 @@ while szam!=0:
     if szam != 0:
         lista.append(szam)
 
-max = lista2[-1]
+max = lista2[0]
+for j in range(len(lista2)):
+    if lista2[j] > max:
+        max = lista2[j]
 
 for i in range(1,max+1):
     print(str(i)+": "+str(lista.count(i)))
