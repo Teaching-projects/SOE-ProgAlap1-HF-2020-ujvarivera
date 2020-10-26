@@ -4,9 +4,9 @@ listasms = []
 honap = 0
 
 while honap != 12:
-    perc = int(input("Hány percet telefonáltunk?"))
+    perc = int(input())
     listaperc.append(perc)
-    sms = int(input("Hány sms-t küldtünk?"))
+    sms = int(input())
     listasms.append(sms)
     honap += 1
 
