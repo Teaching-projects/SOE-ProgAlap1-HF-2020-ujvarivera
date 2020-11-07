@@ -55,6 +55,7 @@ def initialize_map (width, height):
 
 def pretty_map_print(map):
     # Ide ird meg az uj fuggvenyt, ami a fentiek szerint generalja a kimenetet
+    """
     print("█"*width)
     if height !=2 and height != 3:
         for kulonsor in initialize_map(width,height-2):
@@ -64,7 +65,11 @@ def pretty_map_print(map):
         kulonsor = "█" + (width-2) * "░" + "█"
         print(kulonsor)
     print("█"*width)
-
+    """
+    for a in range(len(map)):
+        for b in range(len(map[a])):
+            print(map[a][b],end="")
+        print()
 
 ###############################################################
 ###############################################################
