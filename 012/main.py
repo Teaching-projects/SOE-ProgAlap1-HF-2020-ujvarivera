@@ -40,9 +40,26 @@ tehat pl egy initialize_map(10,6) altal adott terkepet ha kiiratunk, az igy nezz
 
 def initialize_map (width, height):
     # ide masold be a helyes megoldasodat mult hetrol
+    lista = [width * ["█"]]
+
+    for x in range(height-2):
+        sor = []
+        for y in range(width):
+            sor.append("░")
+        sor[0] = "█"
+        sor[-1] = "█"
+        lista.append(sor)
+    lista.append(width*["█"])
+
+    return lista
 
 def pretty_map_print(map):
     # Ide ird meg az uj fuggvenyt, ami a fentiek szerint generalja a kimenetet
+    print("█"*width)
+    for kulonsor in initialize_map(width,height-2):
+        kulonsor = "█" + (width-2) * "░" + "█"
+        print(kulonsor)
+    print("█"*width)
 
 
 ###############################################################
