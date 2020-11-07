@@ -35,13 +35,22 @@ Ez egy "felulnezet" egy epuletre, ahol █ reprezentalj a falakat, es ░ a szab
 Elso alkalommal most az a feladat, hogy irjatok egy olyan fuggvenyt, ami visszaad egy ilyen terkepet.
 """
 
-
 def initialize_map (width, height):
     # Ide irjatok meg a kodotokat. Mindket argumentum egy int, es a sorok/oszlopok szamat fogja megadni.
     # A fuggveny ugy mukodjon, egy egy teglalap alaku terkepet adjon vissza a megfelelo sor es oszlopszammal, de ugy, hogy a szelso mezok falak (es csak azok)
     # Feltetelezheto, hogy mindket ertek legalabb 2
+    lista = [width * ["█"]]
 
+    for x in range(height-2):
+        sor = []
+        for y in range(width):
+            sor.append("░")
+        sor[0] = "█"
+        sor[-1] = "█"
+        lista.append(sor)
+    lista.append(width*["█"])
 
+    return lista
 """
 peldaul az initialize_map(3,4) a kovetkezo listat adja vissza:
 [["█","█","█"],["█","░","█"],["█","░","█"],["█","█","█"]]
