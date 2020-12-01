@@ -69,6 +69,11 @@ def pretty_time(seconds):
     perc = (seconds // 60) - ora * 60  # 3800 seconds esetén 63,3333 - 1* 60 = 3(,3333)
     mp = seconds - (ora*3600 + perc*60)  # 3800 esetén 20
 
+    if perc < 10:
+        perc = "0"+str(perc)
+    if mp < 10:
+        mp = "0"+str(mp)
+
     if seconds < 3600: # 1 ora = 3600 mp
         prettytime =  "{}:{}".format(perc,mp)
     else: prettytime =  "{}:{}:{}".format(ora,perc,mp)
@@ -89,25 +94,24 @@ def total_ascent(gpx):
 def chop_after_distance(gpx, distance):
     track = []
     ossztav = None
+
     for i in range(len(gpx)-1):
-        if ossztav > distance:
+        ossztav += position_distance(gpx[i]["position"], gpx[i+1]["position"])
+        if ossztav  > distance:
+            track.append(ossztav)
             return track
-        else:
-            track.append(gpx[i])
-            ossztav += position_distance(gpx[i]["position"], gpx[i+1]["position"])
-    if len(track) == 0:
+
+    if total_distance(gpx) < distance:
         return track
 
 # Ez a fuggveny keresse meg a leggyorsabb, legalabb 1 km-es szakaszt a trackben, es adjon vissza rola egy masolatot
 def fastest_1k(gpx):
-    minimum = gpx[1]["timestamp"]
-    for i in range(len(gpx)):
-        lista = chop_after_distance(gpx,1000)
-        if lista[-1]["timestamp"] < minimum:
-            minimum = lista[-1]["timestamp"]
-        else:
-            lista = chop_after_distance(gpx,1000)
-    return lista
+    lista = chop_after_distance(gpx,1000)
+    minimum = lista[1]["timestamp"]
+    for i in range(len(lista)):
+        if lista[i]["timestamp"] < minimum:
+            minimum = lista[i]["timestamp"]
+    return minimum
 
 
 # Az alabbi reszek betoltenek egy ilyen pickle fajlt, es kiirjak a statisztikakat megformazva
