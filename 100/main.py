@@ -84,9 +84,7 @@ def pretty_time(seconds):
 def total_ascent(gpx):
     osszemelkedes = 0
     for i in range(len(gpx)-1):
-        tav = position_distance(gpx[i]["position"], gpx[i+1]["position"])
-        if gpx[i]["elevation"] > 0:
-            tav += osszemelkedes
+        osszemelkedes += (gpx[i+1]["elevation"] - gpx[i]["elevation"])
     return osszemelkedes
 
 # Ez a fuggveny keresse meg a gpx track elejen azt a legrovidebb reszt, ami mar atlepi a megadott tavolsagot, majd errol a reszrol adjon vissza egy masolatot.
