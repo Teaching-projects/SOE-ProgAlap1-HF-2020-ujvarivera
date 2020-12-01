@@ -82,10 +82,16 @@ def pretty_time(seconds):
 
 # Ez a fuggveny szamolja ki, hogy mennyi volt az osszes emelkedes, azaz hany metert mentunk felfele
 def total_ascent(gpx):
-    osszemelkedes = 0
-    for i in range(len(gpx)-1):
-        osszemelkedes += (gpx[i+1]["elevation"] - gpx[i]["elevation"])
-    return osszemelkedes
+    max = gpx[1]["elevation"]
+    min = gpx[1]["elevation"]
+
+    for i in range(len(gpx)):
+        if gpx[i]["elevation"] > max:
+            max = gpx[i]["elevation"]
+        elif gpx[i]["elevation"] < min:
+            min = gpx[i]["elevation"]
+
+    return (max-min)
 
 # Ez a fuggveny keresse meg a gpx track elejen azt a legrovidebb reszt, ami mar atlepi a megadott tavolsagot, majd errol a reszrol adjon vissza egy masolatot.
 # A fuggveny adjon vissza egy ures tracket, ha az egesz gpx track nincs olyan hosszu, mint a megadott tavolsag.
@@ -93,23 +99,27 @@ def chop_after_distance(gpx, distance):
     track = []
     ossztav = None
 
-    for i in range(len(gpx)-1):
-        ossztav += position_distance(gpx[i]["position"], gpx[i+1]["position"])
-        if ossztav  > distance:
-            track.append(ossztav)
-            return track
-
     if total_distance(gpx) < distance:
         return track
+
+    for i in range(len(gpx)-1):
+        ossztav += position_distance(gpx[i]["position"], gpx[i+1]["position"])
+        while ossztav < distance:
+            track.append(gpx[i])
+        return track
+
 
 # Ez a fuggveny keresse meg a leggyorsabb, legalabb 1 km-es szakaszt a trackben, es adjon vissza rola egy masolatot
 def fastest_1k(gpx):
     lista = chop_after_distance(gpx,1000)
     minimum = lista[1]["timestamp"]
+    lista2 = []
     for i in range(len(lista)):
         if lista[i]["timestamp"] < minimum:
             minimum = lista[i]["timestamp"]
-    return minimum
+    for j in range(len(lista)):
+        while lista[j]["timestamp"] != minimum:
+            lista2.append(lista[j])
 
 
 # Az alabbi reszek betoltenek egy ilyen pickle fajlt, es kiirjak a statisztikakat megformazva
