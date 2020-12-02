@@ -115,7 +115,7 @@ def fastest_1k(gpx):
         if lista[i]["timestamp"] < minimum:
             minimum = lista[i]["timestamp"]
     for j in range(len(lista)):
-        while lista[j]["timestamp"] != minimum:
+        if lista[j]["timestamp"] == minimum:
             fastest.append(lista[j])
     return fastest
 
