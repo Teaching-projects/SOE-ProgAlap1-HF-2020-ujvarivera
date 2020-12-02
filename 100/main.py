@@ -87,6 +87,8 @@ def total_ascent(gpx):
     for i in range(len(gpx)-1):
         if gpx[i+1]["elevation"] > gpx[i]["elevation"]:
             osszemelkedes += (gpx[i+1]["elevation"] - gpx[i]["elevation"])
+        else: 
+            osszemelkedes += (gpx[i]["elevation"] - gpx[i+1]["elevation"])
 
     return osszemelkedes
 
