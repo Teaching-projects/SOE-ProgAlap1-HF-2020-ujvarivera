@@ -85,11 +85,9 @@ def total_ascent(gpx):
     osszemelkedes = 0
 
     for i in range(len(gpx)-1):
-        if gpx[i+1]["elevation"] > gpx[i]["elevation"]:
-            osszemelkedes += (gpx[i+1]["elevation"] - gpx[i]["elevation"])
-        else: 
-            osszemelkedes += (gpx[i]["elevation"] - gpx[i+1]["elevation"])
-
+        if gpx[i+1]["elavation"] > gpx[i]["elavation"]:
+            osszemelkedes += (gpx[i+1]["elavation"] - gpx[i]["elavation"])
+        
     return osszemelkedes
 
 # Ez a fuggveny keresse meg a gpx track elejen azt a legrovidebb reszt, ami mar atlepi a megadott tavolsagot, majd errol a reszrol adjon vissza egy masolatot.
