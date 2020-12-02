@@ -119,6 +119,7 @@ def fastest_1k(gpx):
     for j in range(len(lista)):
         while lista[j]["timestamp"] != minimum:
             lista2.append(lista[j])
+    return lista2
 
 
 # Az alabbi reszek betoltenek egy ilyen pickle fajlt, es kiirjak a statisztikakat megformazva
