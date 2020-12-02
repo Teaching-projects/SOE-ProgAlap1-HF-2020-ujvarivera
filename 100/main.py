@@ -94,16 +94,16 @@ def total_ascent(gpx):
 # A fuggveny adjon vissza egy ures tracket, ha az egesz gpx track nincs olyan hosszu, mint a megadott tavolsag.
 def chop_after_distance(gpx, distance):
     track = []
-    ossztav = None
+    ossztav = 0
 
     if total_distance(gpx) < distance:
         return track
     else:
         for i in range(len(gpx)-1):
             ossztav += position_distance(gpx[i]["position"], gpx[i+1]["position"])
-            if ossztav < distance:
+            if ossztav > distance:
                 track.append(gpx[i])
-            return track
+        return track
 
 
 # Ez a fuggveny keresse meg a leggyorsabb, legalabb 1 km-es szakaszt a trackben, es adjon vissza rola egy masolatot
