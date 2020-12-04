@@ -69,15 +69,14 @@ def pretty_time(seconds):
     perc = (seconds // 60) - ora * 60  # 3800 seconds esetén 63,3333 - 1* 60 = 3(,3333)
     mp = seconds - (ora*3600 + perc*60)  # 3800 esetén 20
 
-    if perc < 10:
-        perc = "0"+str(perc)
-    if mp < 10:
-        mp = "0"+str(mp)
-
     if seconds < 3600: # 1 ora = 3600 mp
-        prettytime =  "{}:{}".format(perc,mp)
-    else: prettytime =  "{}:{}:{}".format(ora,perc,mp)
-
+        if perc == 0:
+            prettytime = "{:02d}:{:02d}".format(perc, mp)
+        else:
+            prettytime = "{}:{:02d}".format(perc, mp)
+    else:
+        prettytime = "{}:{:02d}:{:02d}".format(ora, perc, mp)
+        
     return prettytime
 
 # Ez a fuggveny szamolja ki, hogy mennyi volt az osszes emelkedes, azaz hany metert mentunk felfele
@@ -110,7 +109,7 @@ def chop_after_distance(gpx, distance):
 # Ez a fuggveny keresse meg a leggyorsabb, legalabb 1 km-es szakaszt a trackben, es adjon vissza rola egy masolatot
 def fastest_1k(gpx):
     min_time = total_time(chop_after_distance(gpx,1000))
-    
+
     for i in range(len(gpx)):
         track = chop_after_distance(gpx[i:],1000)
         time = total_time(track)
