@@ -110,15 +110,17 @@ def chop_after_distance(gpx, distance):
 # Ez a fuggveny keresse meg a leggyorsabb, legalabb 1 km-es szakaszt a trackben, es adjon vissza rola egy masolatot
 def fastest_1k(gpx):
     min_time = total_time(chop_after_distance(gpx,1000))
+    
     for i in range(len(gpx)):
         track = chop_after_distance(gpx[i:],1000)
         time = total_time(track)
-        if time < min_time:
-            minindex = i
-            maxindex = len(track)
-            track = gpx[minindex:maxindex+1]
-    return track
-    
+        if time < min_time and time > 0:
+            min_time = time
+            
+    for j in range(len(gpx)):
+        fastest = chop_after_distance(gpx[j:],1000)
+        if total_time(fastest) == min_time:
+            return fastest
 
 # Az alabbi reszek betoltenek egy ilyen pickle fajlt, es kiirjak a statisztikakat megformazva
 import pickle
