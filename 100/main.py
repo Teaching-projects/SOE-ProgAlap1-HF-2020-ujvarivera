@@ -103,7 +103,7 @@ def chop_after_distance(gpx, distance):
             ossztav += position_distance(gpx[i]["position"], gpx[i+1]["position"])
             if ossztav > distance:
                 maxindex = i+1
-                track = gpx[0:maxindex]
+                track = gpx[0:maxindex+1]
                 return track
 
 
@@ -116,7 +116,7 @@ def fastest_1k(gpx):
         if time < min_time:
             minindex = i
             maxindex = len(track)
-            track = gpx[minindex:maxindex]
+            track = gpx[minindex:maxindex+1]
     return track
     
 
