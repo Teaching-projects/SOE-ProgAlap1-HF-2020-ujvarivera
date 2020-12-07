@@ -151,16 +151,22 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
         szo (str): a megfejtendő szó
         osszes_elet (int): az életeink száma, azaz hány rossz tipp után vesztettünk
     """
-    betuk = []
+    
+    Tippek = []
+    elhasznalt = 0
+    rossz = rossz_tippek(szo,Tippek)
+    
     while True:
         betu = input("Adja meg a kovetkezo betut: ")
-        betuk.append(betu)
-        print(megjelenites(szo,betuk))
+        Tippek.append(betu)
+        print(megjelenites(szo,Tippek))
+        if rossz_tippek(szo, Tippek):
+            elhasznalt += 1
         print(eletek(osszes_elet,elhasznalt))
-        if megfejtett(szo,betuk):
-            print("Gratulalok, nyertel, es meg {} eleted maradt!",.format(eletek(osszes,elhasznalt)))
+        if megfejtett(szo,Tippek):
+            print("Gratulalok, nyertel, es meg {} eleted maradt!".format(osszes_elet))
             break
-        if eletek(0,elhasznalt):
+        if osszes_elet == rossz:
             print("Sajnalom, nem nyertel, ez lett volna a megoldas: ", szo)
             break
     
