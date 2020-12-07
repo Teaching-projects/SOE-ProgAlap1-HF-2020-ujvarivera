@@ -37,16 +37,15 @@ def megjelenites(szo:str, betuk:Tippek) -> str:
     Returns:
         str: a megjelenített változata a szónak
     """
-    for betu in range(len(szo)):
-        if kozte_van(betu,betuk) and betu not in szo:
-            if betu in specialis_karakterek:
-                print(betu, end = "")
-            elif betu == " ":
-                print(" ",end="")
-            else:
-                print("_", end="")
-        else: print(betu, end = "")
-
+    
+    for betu in szo:
+        if kozte_van(betu,betuk+specialis_karakterek):
+            print(betu, end="")
+        elif betu == " ":
+            print(" ", end="")
+        else: print("_", end="")
+    if betu not in szo: 
+        print("_", end="")
 
 
 def megfejtett(szo:str, betuk:Tippek) -> bool:
@@ -155,7 +154,7 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
     Tippek = []
     elhasznalt = 0
     rossz = rossz_tippek(szo,Tippek)
-    
+
     while True:
         betu = input("Adja meg a kovetkezo betut: ")
         Tippek.append(betu)
