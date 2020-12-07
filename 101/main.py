@@ -18,8 +18,11 @@ def kozte_van(betu:str, betuk:Tippek) -> bool:
     else: return False
 
 """
-betuk = ["a","b","c"]
-print(kozte_van("d",betuk))
+betuk = ["a","b","c", "M"]
+print(kozte_van("d",betuk)) # False
+print(kozte_van("a",betuk)) # True
+print(kozte_van("b",betuk)) # True
+print(kozte_van("m",betuk)) # False
 mukodik
 """
 
@@ -47,6 +50,12 @@ def megjelenites(szo:str, betuk:Tippek) -> str:
     if betu not in szo: 
         print("_", end="")
 
+"""
+betuk = ["a","b","c", "M"]
+szo = "Hal"
+print(megjelenites(szo,betuk))
+nem mukodik
+"""
 
 def megfejtett(szo:str, betuk:Tippek) -> bool:
     """Megadja, hogy sikerült-e már megfejtenünk a szót, azaz minden benne levő betű már a tippjeink között van.
@@ -70,6 +79,11 @@ def megfejtett(szo:str, betuk:Tippek) -> bool:
 szo= "ab"
 betuk = ["a", "c"]
 print(megfejtett(szo,betuk)) # False
+betuk = ["a", "b"]
+print(megfejtett(szo,betuk)) # True
+betuk = ["b", "a"]
+print(megfejtett(szo,betuk)) # True
+
 mukodik
 """
 
@@ -85,7 +99,8 @@ def tartalmazza(szo:str, betu:str) -> bool:
     """
     if betu in szo:
         return True
-    else:  return False
+    else: 
+        return False
 
 def rossz_tippek(szo:str, betuk:Tippek) -> int:
     """Megadja, hogy hány rossz betűt tippeltünk eddig.
@@ -105,7 +120,12 @@ def rossz_tippek(szo:str, betuk:Tippek) -> int:
 """
 betuk = ["a","b","c","d"]
 szo = "abgh"
-print(rossz_tippek(szo,betuk))
+print(rossz_tippek(szo,betuk)) #2
+
+betuk = ["a","b","c"]
+szo = "abg"
+print(rossz_tippek(szo,betuk)) #1
+
 mukodik
 """
 
@@ -126,7 +146,9 @@ def eletek(osszes:int,elhasznalt:int)->str:
     maradek = eletek + elhasznaltelet
     return maradek
 """
-print(eletek(4,1))
+print(eletek(4,1)) #😄😄😄💀
+print(eletek(4,2)) #😄😄💀💀
+print(eletek(4,3)) #😄💀💀💀
 mukodik
 """
 
