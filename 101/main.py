@@ -197,8 +197,8 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
         print(eletek(osszes_elet,elhasznalt))
         print(tippek)
         betu = input("Adja meg a kovetkezo betut: ")
+        print(betu)
         tippek.append(betu)
-        print()
         if not tartalmazza(szo,betu):
             elhasznalt += 1
         if megfejtett(szo,tippek):
