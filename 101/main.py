@@ -202,10 +202,11 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
         if not tartalmazza(szo,betu):
             elhasznalt += 1
         if megfejtett(szo,tippek):
+            print(szo)
             print("Gratulalok, nyertel, es meg {} eleted maradt!".format(osszes_elet-elhasznalt))
             break
         if osszes_elet == elhasznalt:
-            print("Sajnalom, nem nyertel, ez lett volna a megoldas: ", szo)
+            print("Sajnalom, nem nyertel, ez lett volna a megoldas: {}".format(szo))
             break
     
 
