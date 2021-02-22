@@ -57,7 +57,7 @@ class Time:
         20
         """
         # Time(12345)._mm()
-        # / 60 = 205 perc
+        # / 60 = 205 perc (= 3 óra 25 perc)
         # - (3*60) = 25 
         
         min = self.seconds // 60
