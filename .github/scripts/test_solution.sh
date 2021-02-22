@@ -32,8 +32,10 @@ for case in `ls tests/*.in`; do
 done;
 
 for py in `ls *.py`; do
-    echo echo "--- Doctest of $py -------------------------">>$LOG
-    python3 -m doctest $py >> $LOG || :
+    if [ "$py" != "main.py" ] && [ "$py" != "generate_input.py" ]; then
+        echo echo "--- Doctest of $py -------------------------">>$LOG
+        python3 -m doctest $py >> $LOG || :
+    fi
 done;
 
 if [[ -f "$LOG" ]] ; then
