@@ -8,7 +8,7 @@ class Time:
         Args:
             seconds (int): a masodpercek szama
         """
-        pass
+        self.seconds = seconds 
         
     def to_seconds(self) -> int:
         """Adja vissza egy `int`-ben, hogy masodpercben kifejezve mennyi az ido
@@ -21,7 +21,7 @@ class Time:
         >>> Time(345).to_seconds()
         345
         """
-        pass
+        return self.seconds
 
     def _ss(self)->int:
         """Visszaadja, hogy mennyit mutat a "masodpercmutato"
@@ -36,7 +36,7 @@ class Time:
         >>> Time(1234)._ss()
         34
         """
-        pass
+        return (self.seconds % 60)
     
     def _mm(self) -> int:
         """Visszaadja, hogy mennyit mutat a "percmutato"
@@ -51,7 +51,7 @@ class Time:
         >>> Time(1234)._mm()
         20
         """
-        pass
+        return (self.seconds // 60)
     
     def _hh(self) -> int:
         """Visszaadja, hogy mennyit mutat az "oramutato", amely sosem nullazodik.
@@ -70,7 +70,7 @@ class Time:
         >>> Time(12345)._hh()
         3
         """
-        pass
+        return (self.seconds//(60*60))
     
     def pretty_format(self) -> str:
         """Visszaadja az idot szep modon
@@ -92,7 +92,14 @@ class Time:
         >>> Time(123456).pretty_format()
         '34:17:36'
         """
-        pass
+   
+        if self.seconds < 60:
+            return str(self._ss())
+        elif self.seconds >= 60 and self.seconds < 3600:
+            return "{}:{:02d}".format((self._mm() % 60), (self._ss()))
+        else:
+            return "{}:{:02d}:{:02d}".format(self._hh(), self._mm() % 60, self._ss() % 3600)
+
 
 
 
@@ -116,5 +123,10 @@ class Time:
         >>> Time().set_from_string('111:01:23')
         399683
         """
-        pass
-
+        timelist = time.split(':') #lista lesz
+        if len(timelist) == 1:
+            return int(timelist[0])
+        if len(timelist) == 2:
+            return int(timelist[0])*60 + int(timelist[1])
+        if len(timelist) == 3:
+            return int(timelist[0])*3600 + int(timelist[1]) * 60 + int(timelist[2])
