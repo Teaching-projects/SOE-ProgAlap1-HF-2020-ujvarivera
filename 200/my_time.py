@@ -36,7 +36,12 @@ class Time:
         >>> Time(1234)._ss()
         34
         """
-        return (self.seconds % 60)
+        if self.seconds % 60 == 0:
+            return 0
+        else:
+            while self.seconds > 60:
+                self.seconds -= 60
+            return self.seconds
     
     def _mm(self) -> int:
         """Visszaadja, hogy mennyit mutat a "percmutato"
@@ -51,7 +56,17 @@ class Time:
         >>> Time(1234)._mm()
         20
         """
-        return (self.seconds // 60)
+        # Time(12345)._mm()
+        # / 60 = 205 perc
+        # - (3*60) = 25 
+        
+        min = self.seconds // 60
+        if self.seconds % 60 == 0:
+            return 0
+        else:
+            while min > 60:
+                min -= 60
+            return min
     
     def _hh(self) -> int:
         """Visszaadja, hogy mennyit mutat az "oramutato", amely sosem nullazodik.
@@ -96,9 +111,9 @@ class Time:
         if self.seconds < 60:
             return str(self._ss())
         elif self.seconds >= 60 and self.seconds < 3600:
-            return "{}:{:02d}".format((self._mm() % 60), (self._ss()) % 3600)
+            return "{}:{:02d}".format(self._mm(), self._ss())
         else:
-            return "{}:{:02d}:{:02d}".format(self._hh(), self._mm() % 60, self._ss() % 3600)
+            return "{}:{:02d}:{:02d}".format(self._hh(), self._mm(), self._ss())
 
 
 
