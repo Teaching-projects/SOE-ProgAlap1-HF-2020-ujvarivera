@@ -61,7 +61,7 @@ class Time:
         # - (3*60) = 25 
         
         min = self.seconds // 60
-        if self.seconds % 60 == 0:
+        if self.seconds % 3600 == 0: # mert az kereken x ora es nulla perc
             return 0
         else:
             while min > 60:
