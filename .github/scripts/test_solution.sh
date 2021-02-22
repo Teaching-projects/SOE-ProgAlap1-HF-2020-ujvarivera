@@ -30,6 +30,11 @@ for case in `ls tests/*.in`; do
     rm $generated   
 done;
 
+for py in `ls *.py`; do
+    echo echo "--- Doctest of $i -------------------------">>$LOG
+    python3 -m doctest $i >> $LOG
+done;
+
 if [[ -f "$LOG" ]] ; then
     echo "Some checks failed:"
     echo
