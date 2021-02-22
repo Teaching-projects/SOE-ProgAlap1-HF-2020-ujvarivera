@@ -6,6 +6,7 @@ DIR=$1
 cd $DIR
 rm -f $LOG
 
+[[ -d tests ]] &&
 for case in `ls tests/*.in`; do
     generated="$case.gen"
     rm -f $generated
@@ -31,8 +32,8 @@ for case in `ls tests/*.in`; do
 done;
 
 for py in `ls *.py`; do
-    echo echo "--- Doctest of $i -------------------------">>$LOG
-    python3 -m doctest $i >> $LOG
+    echo echo "--- Doctest of $py -------------------------">>$LOG
+    python3 -m doctest $py >> $LOG || :
 done;
 
 if [[ -f "$LOG" ]] ; then
