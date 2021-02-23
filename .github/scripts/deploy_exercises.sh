@@ -7,7 +7,7 @@ function deploy {
     git checkout -b $branchname $student/main
     git pull --no-edit
     git merge --no-edit origin/main
-    git push $student HEAD:main
+    git push --force $student HEAD:main
     git checkout main
     git branch -d $branchname
 }
