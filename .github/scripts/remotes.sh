@@ -11,4 +11,6 @@ remotes=(
     "kebeleicsaba"
     "Fmiri08"
     "illesgabor1126"
+    "kelemenkristof0709"
+    "horvathro"
 )
