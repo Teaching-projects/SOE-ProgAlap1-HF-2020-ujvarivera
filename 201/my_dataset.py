@@ -129,7 +129,7 @@ class DataSet:
         min = self.data[0]
         for i in self.data:
             if i < min: 
-                min == i
+                min = i
         return min
 
 
@@ -137,9 +137,9 @@ class DataSet:
         max = self.data[0]
         for i in self.data:
             if i > max: 
-                max == i
+                max = i
         return max
-    
+       
     def count(self,x) -> int:
         count = 0
         for i in self.data:
@@ -158,16 +158,16 @@ class DataSet:
         return (min,max)
 
     def print_histogram(self) -> None:
-        pass
+        print(self.name)
+        length = len(self.name)
+        print("-"*length)
+        
+        for i in range(self.min(),self.max()+1):
+            print("{:>5}{}{}{}".format(i," ", "| ", "#" * self.count(i)))
+
 
     def print(self):
         print(self.data)
 
-ds=DataSet("Szekek szama irodakban")
-for cc in [3,4,5,4,5,4,3,4,5,6,5,4,4,3,4,5]: 
-    ds.record(cc)
-ds.print()
-print(ds.min())
-print(ds.max())
-print(ds.range())
+
 
