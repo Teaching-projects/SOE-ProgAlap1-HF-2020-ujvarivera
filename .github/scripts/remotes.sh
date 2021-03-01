@@ -14,5 +14,5 @@ remotes=(
     "kelemenkristof0709"
     "horvathro"
     "bakosDB"
-    "bbodibalazs"
+    "babodibalazs"
 )
