@@ -76,19 +76,34 @@ B-C
 class Graph:
     
     def __init__(self, vertices=[]):
-        pass
+        self.vertices = vertices
+        self.edges = []
     
     def has_vertex(self, vertex):
-        pass
+        bools = []
+        for vertex in self.vertices:
+            if vertex in self.vertices:
+                bools.append("True")
+            else: bools.append("False")
     
     def add_vertex(self, vertex):
-        pass
+        if vertex in self.vertices:
+            return False
+        else:
+            self.vertices.append(vertex)
+            return True
     
     def add_edge(self,vertex1,vertex2):
-        pass
+        if [vertex1,vertex2] or [vertex2,vertex1] in self.edges:
+            return True
+        else: 
+            self.edges.append([vertex1,vertex2])
+            return False
     
     def has_edge(self,vertex1,vertex2):
-        pass
+        if [vertex1,vertex2] or [vertex2,vertex1] in self.edges:
+            return True
+        else: return False
 
     def d(self,vertex):
         pass
