@@ -111,30 +111,63 @@ Felev vegi jegyek
 class DataSet:
 
     def __init__(self, name) -> None:
-        pass
+        self.name = name
+        self.data = []
     
     def record(self,data) -> None:
-        pass
+        self.data.append(data)
     
     def average(self) -> float:
-        pass
+        count = 0
+        sum = 0
+        for i in self.data:
+            sum +=i
+            count += 1
+        return sum/count
 
     def min(self) -> int:
-        pass
+        min = self.data[0]
+        for i in self.data:
+            if i < min: 
+                min == i
+        return min
+
 
     def max(self) -> int:
-        pass
+        max = self.data[0]
+        for i in self.data:
+            if i > max: 
+                max == i
+        return max
     
     def count(self,x) -> int:
-        pass
+        count = 0
+        for i in self.data:
+            if i == x:
+                count += 1
+        return count 
     
     def probability(self,x) -> float:
-        pass
+        count = self.count(x)
+        all = len(self.data)
+        return count/all
     
     def range(self) -> tuple:
-        pass
+        min = self.min()
+        max = self.max()
+        return (min,max)
 
     def print_histogram(self) -> None:
         pass
 
+    def print(self):
+        print(self.data)
+
+ds=DataSet("Szekek szama irodakban")
+for cc in [3,4,5,4,5,4,3,4,5,6,5,4,4,3,4,5]: 
+    ds.record(cc)
+ds.print()
+print(ds.min())
+print(ds.max())
+print(ds.range())
 
