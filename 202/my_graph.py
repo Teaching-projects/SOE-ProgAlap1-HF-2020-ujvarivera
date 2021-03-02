@@ -92,16 +92,14 @@ class Graph:
             return True
     
     def add_edge(self,vertex1,vertex2):
-        if [vertex1,vertex2] in self.edges and [vertex2,vertex1] not in self.edges: 
-            return False
-        elif [vertex2,vertex1] in self.edges and [vertex1,vertex2] not in self.edges:
+        if [vertex1,vertex2] in self.edges or [vertex2,vertex1] in self.edges: 
             return False
         else:
             self.edges.append([vertex1,vertex2])
             return True
     
     def has_edge(self,vertex1,vertex2):
-        if [vertex1,vertex2] or [vertex2,vertex1] in self.edges:
+        if [vertex1,vertex2] in self.edges or [vertex2,vertex1] in self.edges:
             return True
         else: return False
 
@@ -109,12 +107,41 @@ class Graph:
         if vertex not in self.vertices:
             return None
         count = 0
-        for i in self.vertices:
-            for j in self.vertices:
-                if j == vertex:
-                    count += 1
+        for i in self.edges:
+            if vertex in i:
+                count += 1
         return count
     
     def get_subgraph(self,vertices):
-        pass
+        subgrath= Graph(vertices)
+        return subgrath
+
+    def print(self):
+        print(self.vertices)
+        print(self.edges)
+
     
+g = Graph(['A','B','C'])
+[g.has_vertex(x) for x in 'ABCDF']
+g.add_vertex('A') #False
+g.add_vertex('D') #True
+g.add_edge('A','B') #true
+g.add_edge('B','C') #true
+g.add_edge('B','D') #true
+g.add_edge('D','C') #true
+g.add_edge('B','A') #false
+g.has_edge('A','B')
+g.has_edge('B','A')
+
+g.print()
+
+for v1 in "ABCDE":
+    for v2 in "ABCDE":
+        if v1<v2 and g.has_edge(v1,v2):
+            print("{}-{}".format(v1,v2))
+
+"""
+['A', 'B', 'C', 'D']
+[['A', 'B'], ['B', 'C'], ['B', 'D'], ['D', 'C']]
+A-B
+"""
