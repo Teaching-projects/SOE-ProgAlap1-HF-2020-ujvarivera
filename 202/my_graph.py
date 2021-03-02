@@ -80,11 +80,9 @@ class Graph:
         self.edges = []
     
     def has_vertex(self, vertex):
-        bools = []
-        for vertex in self.vertices:
-            if vertex in self.vertices:
-                bools.append("True")
-            else: bools.append("False")
+        if vertex in self.vertices:
+            return True
+        else: return False
     
     def add_vertex(self, vertex):
         if vertex in self.vertices:
@@ -94,11 +92,13 @@ class Graph:
             return True
     
     def add_edge(self,vertex1,vertex2):
-        if [vertex1,vertex2] or [vertex2,vertex1] in self.edges:
-            return True
-        else: 
-            self.edges.append([vertex1,vertex2])
+        if [vertex1,vertex2] in self.edges and [vertex2,vertex1] not in self.edges: 
             return False
+        elif [vertex2,vertex1] in self.edges and [vertex1,vertex2] not in self.edges:
+            return False
+        else:
+            self.edges.append([vertex1,vertex2])
+            return True
     
     def has_edge(self,vertex1,vertex2):
         if [vertex1,vertex2] or [vertex2,vertex1] in self.edges:
@@ -106,7 +106,14 @@ class Graph:
         else: return False
 
     def d(self,vertex):
-        pass
+        if vertex not in self.vertices:
+            return None
+        count = 0
+        for i in self.vertices:
+            for j in self.vertices:
+                if j == vertex:
+                    count += 1
+        return count
     
     def get_subgraph(self,vertices):
         pass
