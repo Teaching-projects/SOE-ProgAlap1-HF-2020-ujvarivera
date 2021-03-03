@@ -113,35 +113,25 @@ class Graph:
         return count
     
     def get_subgraph(self,vertices):
-        subgrath= Graph(vertices)
-        return subgrath
+        edg = []
+        possible = []
+        
+        for x in vertices:
+            for y in vertices:
+                possible.append([x,y])
+                possible.append([y,x])
+        
+        for j in self.edges:
+            if j in possible:
+                edg.append(j)
+                    
+        self.vertices = vertices
+        self.edges = edg
+        return self
+    
+
 
     def print(self):
         print(self.vertices)
         print(self.edges)
 
-    
-g = Graph(['A','B','C'])
-[g.has_vertex(x) for x in 'ABCDF']
-g.add_vertex('A') #False
-g.add_vertex('D') #True
-g.add_edge('A','B') #true
-g.add_edge('B','C') #true
-g.add_edge('B','D') #true
-g.add_edge('D','C') #true
-g.add_edge('B','A') #false
-g.has_edge('A','B')
-g.has_edge('B','A')
-
-g.print()
-
-for v1 in "ABCDE":
-    for v2 in "ABCDE":
-        if v1<v2 and g.has_edge(v1,v2):
-            print("{}-{}".format(v1,v2))
-
-"""
-['A', 'B', 'C', 'D']
-[['A', 'B'], ['B', 'C'], ['B', 'D'], ['D', 'C']]
-A-B
-"""
