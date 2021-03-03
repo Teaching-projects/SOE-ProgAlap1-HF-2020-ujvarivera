@@ -113,21 +113,12 @@ class Graph:
         return count
     
     def get_subgraph(self,vertices):
-        edg = []
-        possible = []
-        
+        subgraph = Graph(vertices)
         for x in vertices:
             for y in vertices:
-                possible.append([x,y])
-                possible.append([y,x])
-        
-        for j in self.edges:
-            if j in possible:
-                edg.append(j)
-                    
-        self.vertices = vertices
-        self.edges = edg
-        return self
+                if self.has_edge(x,y):
+                    subgraph.add_edge(x,y)
+        return subgraph
     
 
 
